@@ -1,14 +1,22 @@
-import { defineConfig } from "vitest/config";
-import react from "@vitejs/plugin-react-swc";
+import react from '@vitejs/plugin-react-swc'
+import type { Plugin } from "vite";
+import { defineConfig } from "vite";
+import { defaultConfig, getColorModeScript } from "@yamada-ui/react"
+
+function injectScript(): Plugin {
+  return {
+    name: "vite-plugin-inject-scripts",
+    transformIndexHtml(html) {
+      const content = getColorModeScript({
+        initialColorMode: defaultConfig.initialColorMode,
+      })
+
+      return html.replace("<body>", `<body><script>${content}</script>`)
+    },
+  }
+}
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react()],
-	test: {
-		globals: true, // グローバル変数 (expect など) を使用するため
-		environment: "jsdom", // React コンポーネントのテストには jsdom 環境が必要
-		coverage: {
-			provider: "istanbul", // カバレッジツールをインストール
-		},
-	},
-});
+  plugins: [react(), injectScript()],
+})
