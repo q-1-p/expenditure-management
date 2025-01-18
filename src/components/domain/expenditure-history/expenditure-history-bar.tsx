@@ -1,4 +1,4 @@
-import { Box, Button } from "@yamada-ui/react";
+import { Box, IconButton } from "@yamada-ui/react";
 import { Trash2Icon } from "@yamada-ui/lucide";
 import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
 import { memo } from "react";
@@ -24,7 +24,7 @@ export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
 					{expenditureHistory.isFixedCost ? "固定費" : "変動費"}
 				</Box>
 				<Box width={"6.5rem"}>{expenditureHistory.expendedAt.toString()}</Box>
-				<Button as="button" startIcon={<Trash2Icon />} />
+				<IconButton as="button" icon={<Trash2Icon />} />
 			</Box>
 		</>
 	);
