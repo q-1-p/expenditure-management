@@ -3,9 +3,7 @@ import { supabase } from "../supabase";
 
 export class ExpenditureRepository {
 	getHistories = async (): Promise<ExpenditureHistory[]> => {
-		const { data, error } = await supabase
-			.from("expenditure_histories")
-			.select("*");
+		const { data } = await supabase.from("expenditure_histories").select("*");
 
 		const histories: ExpenditureHistory[] = data
 			? data.map(

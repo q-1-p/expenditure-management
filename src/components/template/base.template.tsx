@@ -1,4 +1,4 @@
-import { Box, Stack } from "@yamada-ui/react";
+import { Stack } from "@yamada-ui/react";
 import type { PropsWithChildren } from "react";
 import { SideBar } from "../domain/sidebar";
 
