@@ -1,7 +1,8 @@
-import { Box } from "@yamada-ui/react";
+import { Box, LinkBox } from "@yamada-ui/react";
 import { keyframes } from "@emotion/react";
 import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { routes } from "../../router/routes";
 
 const fadeIn = keyframes`
   from {
@@ -39,21 +40,23 @@ export const SideBar = memo(() => {
 			{isVisible && (
 				<Box
 					bg={"gray.900"}
-					p={4}
-					pt={16}
+					py={16}
 					height={"100vh"}
 					width={"12rem"}
 					animation={`${fadeIn} 0.1s ease-in-out`}
 				>
-					<Box p={1} onClick={() => navigate("/")}>
-						支出一覧
-					</Box>
-					<Box p={1} onClick={() => navigate("/budget")}>
-						予算管理
-					</Box>
-					<Box p={1} onClick={() => navigate("/category")}>
-						カテゴリ管理
-					</Box>
+					{routes.map((route) => (
+						<>
+							<LinkBox
+								key={route.name}
+								p={4}
+								onClick={() => navigate(route.path)}
+								_hover={{ bg: "gray.600" }} // ホバー時の背景色変更
+							>
+								{route.name}
+							</LinkBox>
+						</>
+					))}
 				</Box>
 			)}
 		</>
