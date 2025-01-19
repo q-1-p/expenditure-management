@@ -11,7 +11,7 @@ export class ExpenditureRepository {
 						new ExpenditureHistory(
 							x.id,
 							x.name,
-							x.is_periodic,
+							x.is_variable_cost,
 							x.is_fixed_cost,
 							x.expended_at,
 						),
