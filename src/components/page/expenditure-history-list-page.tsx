@@ -1,9 +1,17 @@
-import { Box, Heading, IconButton, useColorMode } from "@yamada-ui/react";
-import { ExpenditureList } from "../domain/expenditure-history/expenditure-history-list";
+import {
+	Box,
+	Heading,
+	IconButton,
+	useColorMode,
+	useDisclosure,
+} from "@yamada-ui/react";
+import { ExpenditureList } from "../domain/expenditure/expenditure-history-list";
 import { BaseTemplate } from "../template/base.template";
 import { PlusIcon } from "@yamada-ui/lucide";
+import { ExpenditureHistoryAddDialog } from "../domain/expenditure/expenditure-history-add-dialog";
 
 export const ExpenditureListPage = () => {
+	const { open, onOpen, onClose } = useDisclosure();
 	const { changeColorMode } = useColorMode();
 	changeColorMode("system");
 
@@ -22,7 +30,9 @@ export const ExpenditureListPage = () => {
 						position={"absolute"}
 						bottom={"4vh"}
 						right={"4vw"}
+						onClick={onOpen}
 					/>
+					<ExpenditureHistoryAddDialog open={open} onClose={onClose} />
 				</Box>
 			</BaseTemplate>
 		</>
