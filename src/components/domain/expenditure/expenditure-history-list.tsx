@@ -1,13 +1,14 @@
 import { Box } from "@yamada-ui/react";
 import { ExpenditureBar } from "./expenditure-history-bar";
 import { getExpenditureHistories } from "../../../infrastructure/expenditure/expenditure-repository";
-import { memo, useEffect, useState } from "react";
-import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
+import { memo, useEffect } from "react";
+import { useAtom } from "jotai";
+import { expenditureHistoriesAtom } from "../../atom";
 
 export const ExpenditureList = memo(() => {
-	const [expenditureHistories, setExpenditureHistories] = useState<
-		ExpenditureHistory[]
-	>([]);
+	const [expenditureHistories, setExpenditureHistories] = useAtom(
+		expenditureHistoriesAtom,
+	);
 
 	useEffect(() => {
 		const fetchHistories = async () => {
@@ -16,11 +17,11 @@ export const ExpenditureList = memo(() => {
 		};
 
 		fetchHistories();
-	}, []);
+	}, [setExpenditureHistories]);
 
 	return (
 		<>
-			{expenditureHistories.map((expenditureHistory) => (
+			{expenditureHistories?.map((expenditureHistory) => (
 				<Box key={expenditureHistory.id} py={1}>
 					<ExpenditureBar {...expenditureHistory} />
 				</Box>

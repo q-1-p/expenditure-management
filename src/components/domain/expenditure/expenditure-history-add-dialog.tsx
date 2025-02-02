@@ -13,8 +13,13 @@ import {
 } from "@yamada-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import {
+	addExpenditureHistory,
+	getExpenditureHistories,
+} from "../../../infrastructure/expenditure/expenditure-repository";
 import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
-import { addExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-repository";
+import { useSetAtom } from "jotai";
+import { expenditureHistoriesAtom } from "../../atom";
 
 interface AddExpenditureModalProps {
 	open: boolean;
@@ -28,9 +33,12 @@ export const ExpenditureHistoryAddDialog = ({
 	const { register, handleSubmit } = useForm<ExpenditureHistory>();
 	const [isFixedCost, setIsFixedCost] = useState("true");
 	const [isVariableCost, setIsVariableCost] = useState("true");
+	const setExpenditureHistories = useSetAtom(expenditureHistoriesAtom);
 
 	const onSubmit = async (expenditureHistory: ExpenditureHistory) => {
-		addExpenditureHistory(expenditureHistory);
+		await addExpenditureHistory(expenditureHistory);
+		const histories = await getExpenditureHistories();
+		setExpenditureHistories(histories);
 	};
 
 	return (
@@ -48,7 +56,7 @@ export const ExpenditureHistoryAddDialog = ({
 					</HStack>
 					<HStack p={3}>
 						<Text w={"5rem"}>金額</Text>
-						<Input {...register("amount")} />
+						<Input type="number" {...register("amount")} />
 					</HStack>
 					<HStack px={3}>
 						<Text w={"5rem"}>日付</Text>
