@@ -30,6 +30,7 @@ export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
 				<Box flex={7} pr={1}>
 					{expenditureHistory.name}
 				</Box>
+				<Box pr={5}>¥{expenditureHistory.amount}</Box>
 				<Box width={"4rem"}>
 					{expenditureHistory.isPeriodic ? "定期" : "不定期"}
 				</Box>
