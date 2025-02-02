@@ -6,7 +6,6 @@ import {
 	HStack,
 	Text,
 	Input,
-	Spacer,
 	RadioGroup,
 	Radio,
 	Button,
@@ -14,23 +13,26 @@ import {
 } from "@yamada-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
+import { ExpenditureRepository } from "../../../infrastructure/expenditure/expenditure-repository";
 
 interface AddExpenditureModalProps {
 	open: boolean;
 	onClose: () => void;
 }
 
+const expenditureRepository = new ExpenditureRepository();
+
 export const ExpenditureHistoryAddDialog = ({
 	open,
 	onClose,
 }: AddExpenditureModalProps) => {
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit } = useForm<ExpenditureHistory>();
 	const [isFixedCost, setIsFixedCost] = useState("true");
 	const [isVariableCost, setIsVariableCost] = useState("true");
 
-	const onSubmit = (data: any) => {
-		alert(data);
-		// ここで送信処理を行う
+	const onSubmit = async (expenditureHistory: ExpenditureHistory) => {
+		await expenditureRepository.add(expenditureHistory);
 	};
 
 	return (
@@ -43,14 +45,18 @@ export const ExpenditureHistoryAddDialog = ({
 			<ModalBody>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<HStack px={3}>
+						<Text w={"5rem"}>名前</Text>
+						<Input {...register("name")} />
+					</HStack>
+					<HStack p={3}>
 						<Text w={"5rem"}>金額</Text>
 						<Input {...register("amount")} />
 					</HStack>
-					<HStack p={3}>
+					<HStack px={3}>
 						<Text w={"5rem"}>日付</Text>
-						<Input type="datetime-local" {...register("date")} />
+						<Input type="datetime-local" {...register("expendedAt")} />
 					</HStack>
-					<Spacer />
+					<br />
 					<RadioGroup
 						p={3}
 						value={isFixedCost.toString()}
@@ -71,10 +77,10 @@ export const ExpenditureHistoryAddDialog = ({
 						onChange={(value) => setIsVariableCost(value)}
 					>
 						<HStack>
-							<Radio value="true" {...register("isVariableCost")}>
+							<Radio value="true" {...register("isPeriodic")}>
 								変動費
 							</Radio>
-							<Radio value="false" {...register("isVariableCost")}>
+							<Radio value="false" {...register("isPeriodic")}>
 								非変動費
 							</Radio>
 						</HStack>

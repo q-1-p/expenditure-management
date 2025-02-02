@@ -11,6 +11,7 @@ export class ExpenditureRepository {
 						new ExpenditureHistory(
 							x.id,
 							x.name,
+							x.amount,
 							x.is_variable_cost,
 							x.is_fixed_cost,
 							x.expended_at,
@@ -22,10 +23,19 @@ export class ExpenditureRepository {
 	};
 
 	add = async (expenditure: ExpenditureHistory) => {
-		await supabase.from("expenditure_histories").insert(expenditure);
+		const { error } = await supabase.from("expenditure_histories").insert({
+			name: expenditure.name,
+			amount: expenditure.amount,
+			is_variable_cost: expenditure.isPeriodic,
+			is_fixed_cost: expenditure.isFixedCost,
+			expended_at: expenditure.expendedAt,
+		});
+		if (error) {
+			alert(`エラーが発生しました\n${error.message}`);
+		}
 	};
 
-	remove = async (expenditureId: string) => {
+	delete = async (expenditureId: string) => {
 		await supabase
 			.from("expenditure_histories")
 			.delete()
