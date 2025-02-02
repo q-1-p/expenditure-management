@@ -14,14 +14,12 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
-import { ExpenditureRepository } from "../../../infrastructure/expenditure/expenditure-repository";
+import { addExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-repository";
 
 interface AddExpenditureModalProps {
 	open: boolean;
 	onClose: () => void;
 }
-
-const expenditureRepository = new ExpenditureRepository();
 
 export const ExpenditureHistoryAddDialog = ({
 	open,
@@ -32,7 +30,7 @@ export const ExpenditureHistoryAddDialog = ({
 	const [isVariableCost, setIsVariableCost] = useState("true");
 
 	const onSubmit = async (expenditureHistory: ExpenditureHistory) => {
-		await expenditureRepository.add(expenditureHistory);
+		addExpenditureHistory(expenditureHistory);
 	};
 
 	return (

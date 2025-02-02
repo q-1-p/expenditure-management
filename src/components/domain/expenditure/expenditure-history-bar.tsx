@@ -1,7 +1,7 @@
 import { Box, IconButton } from "@yamada-ui/react";
 import { Trash2Icon } from "@yamada-ui/lucide";
 import { memo } from "react";
-import { ExpenditureRepository } from "../../../infrastructure/expenditure/expenditure-repository";
+import { removeExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-repository";
 import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
 
 export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
@@ -28,9 +28,7 @@ export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
 				<IconButton
 					as="button"
 					icon={<Trash2Icon />}
-					onClick={() =>
-						new ExpenditureRepository().delete(expenditureHistory.id)
-					}
+					onClick={() => removeExpenditureHistory(expenditureHistory.id)}
 				/>
 			</Box>
 		</>
