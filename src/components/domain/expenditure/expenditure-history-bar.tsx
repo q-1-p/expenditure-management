@@ -38,7 +38,12 @@ export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
 					{expenditureHistory.isFixedCost ? "固定費" : "変動費"}
 				</Box>
 				<Box width={"6.5rem"}>{expenditureHistory.expendedAt.toString()}</Box>
-				<IconButton as="button" icon={<Trash2Icon />} onClick={remove} />
+				<IconButton
+					as="button"
+					icon={<Trash2Icon />}
+					data-testid="expenditureDeleteButton"
+					onClick={remove}
+				/>
 			</Box>
 		</>
 	);
