@@ -44,6 +44,7 @@ export const ExpenditureHistoryAddDialog = ({
     await addExpenditureHistory(expenditureHistory);
     const histories = await getExpenditureHistories();
     setExpenditureHistories(histories);
+    onClose();
   };
 
   return (
@@ -59,6 +60,7 @@ export const ExpenditureHistoryAddDialog = ({
             <HStack px={3}>
               <Text w={"5rem"}>名前</Text>
               <Input
+                data-testid="nameEntryField"
                 {...register("name", {
                   required: {
                     value: true,
@@ -78,6 +80,7 @@ export const ExpenditureHistoryAddDialog = ({
               <Text w={"5rem"}>金額</Text>
               <Input
                 type="number"
+                data-testid="amountEntryField"
                 {...register("amount", {
                   required: {
                     value: true,
@@ -100,6 +103,7 @@ export const ExpenditureHistoryAddDialog = ({
             <Text w={"5rem"}>日付</Text>
             <Input
               type="datetime-local"
+              data-testid="dateEntryField"
               {...register("expendedAt", {
                 required: {
                   value: true,
