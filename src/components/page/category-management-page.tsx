@@ -2,6 +2,7 @@ import { Heading, HStack, IconButton, useDisclosure } from "@yamada-ui/react";
 import { BaseTemplate } from "../template/base.template";
 import { CategoryTable } from "../domain/category/category-table";
 import { PlusIcon, Trash2Icon } from "@yamada-ui/lucide";
+import { CategoryAddDialog } from "../domain/category/category-add-dialog";
 
 export const CategoryManagementPage = () => {
 	const { open, onOpen, onClose } = useDisclosure();
@@ -31,6 +32,7 @@ export const CategoryManagementPage = () => {
 						aria-label="カテゴリ削除"
 					/>
 				</HStack>
+				<CategoryAddDialog open={open} onClose={onClose} />
 			</BaseTemplate>
 		</>
 	);

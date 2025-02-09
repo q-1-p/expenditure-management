@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { fetchCategories } from "../../../infrastructure/category/category-repository";
 import { Table } from "@yamada-ui/table";
+import { useAtom } from "jotai";
+import { categoriesAtom } from "../../atom";
 import type { Column } from "@yamada-ui/table";
 import type { Category } from "../../../infrastructure/category/category";
 
@@ -24,7 +26,7 @@ export const CategoryTable = () => {
 		],
 		[],
 	);
-	const [categories, setCategories] = useState<Category[]>([]);
+	const [categories, setCategories] = useAtom(categoriesAtom);
 
 	useEffect(() => {
 		const loadCategories = async () => {
@@ -32,7 +34,7 @@ export const CategoryTable = () => {
 			setCategories(data);
 		};
 		loadCategories();
-	}, []);
+	}, [setCategories]);
 
-	return <Table columns={columns} data={categories} />;
+	return <Table rowsClickSelect columns={columns} data={categories ?? []} />;
 };
