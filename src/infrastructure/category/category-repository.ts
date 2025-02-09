@@ -31,11 +31,11 @@ export const addCategory = async (expenditure: Category) => {
 	}
 };
 
-export const deleteCategory = async (expenditureIds: string[]) => {
+export const deleteCategory = async (categoryId: string) => {
 	const { error } = await supabase
 		.from("expenditure_categories")
 		.delete()
-		.eq("id", expenditureIds);
+		.eq("id", categoryId);
 
 	if (error) {
 		alert(`カテゴリ削除中にエラーが発生しました。\n${error.message}`);

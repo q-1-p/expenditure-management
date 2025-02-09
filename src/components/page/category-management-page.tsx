@@ -1,8 +1,8 @@
-import { Heading, HStack, IconButton, useDisclosure } from "@yamada-ui/react";
-import { BaseTemplate } from "../template/base.template";
-import { CategoryTable } from "../domain/category/category-table";
 import { PlusIcon, Trash2Icon } from "@yamada-ui/lucide";
+import { HStack, Heading, IconButton, useDisclosure } from "@yamada-ui/react";
 import { CategoryAddDialog } from "../domain/category/category-add-dialog";
+import { CategoryList } from "../domain/category/category-list";
+import { BaseTemplate } from "../template/base.template";
 
 export const CategoryManagementPage = () => {
 	const { open, onOpen, onClose } = useDisclosure();
@@ -11,7 +11,7 @@ export const CategoryManagementPage = () => {
 		<>
 			<BaseTemplate>
 				<Heading pb={4}>カテゴリ管理ページ</Heading>
-				<CategoryTable />
+				<CategoryList />
 				<HStack position={"absolute"} bottom={"4vh"} right={"4vw"}>
 					<IconButton
 						as="button"
