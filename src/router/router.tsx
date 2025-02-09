@@ -1,26 +1,22 @@
+import { useColorMode } from "@yamada-ui/react";
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { routes } from "./routes";
-import { useColorMode } from "@yamada-ui/react";
 
 export const Router = () => {
-  const { changeColorMode } = useColorMode();
-  changeColorMode("system");
+	const { changeColorMode } = useColorMode();
 
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          {routes.map((route) => (
-            <>
-              <Route
-                key={route.name}
-                path={route.path}
-                element={route.element}
-              />
-            </>
-          ))}
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+	useEffect(() => changeColorMode("system"), [changeColorMode]);
+
+	return (
+		<>
+			<BrowserRouter>
+				<Routes>
+					{routes.map((route) => (
+						<Route key={route.name} path={route.path} element={route.element} />
+					))}
+				</Routes>
+			</BrowserRouter>
+		</>
+	);
 };
