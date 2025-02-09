@@ -7,7 +7,7 @@ export const BaseTemplate: React.FC<PropsWithChildren> = ({ children }) => {
 		<>
 			<Stack direction={{ lg: "row" }}>
 				<SideBar />
-				<Box p={8} height={"100%"} width={"100%"}>
+				<Box p={12} height={"100%"} width={"100%"}>
 					{children}
 				</Box>
 			</Stack>

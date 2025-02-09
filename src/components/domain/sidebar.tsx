@@ -22,7 +22,7 @@ export const SideBar = memo(() => {
 	// Add event listener for mouse move
 	useEffect(() => {
 		const handleMouseMove = (e: MouseEvent) => {
-			if (e.clientX < 100) {
+			if (e.clientX < 48) {
 				setIsVisible(true);
 			} else if (e.clientX > 200) {
 				setIsVisible(false);

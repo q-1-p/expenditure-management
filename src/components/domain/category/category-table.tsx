@@ -34,5 +34,5 @@ export const CategoryTable = () => {
 		loadCategories();
 	}, []);
 
-	return <Table size={"sm"} columns={columns} data={categories} />;
+	return <Table columns={columns} data={categories} />;
 };
