@@ -1,4 +1,4 @@
-import { PlusIcon, Trash2Icon } from "@yamada-ui/lucide";
+import { PlusIcon } from "@yamada-ui/lucide";
 import { HStack, Heading, IconButton, useDisclosure } from "@yamada-ui/react";
 import { CategoryAddDialog } from "../domain/category/category-add-dialog";
 import { CategoryList } from "../domain/category/category-list";
@@ -21,15 +21,6 @@ export const CategoryManagementPage = () => {
 						icon={<PlusIcon />}
 						onClick={onOpen}
 						aria-label="カテゴリ追加"
-					/>
-					<IconButton
-						as="button"
-						colorScheme={"danger"}
-						variant={"outline"}
-						size={"lg"}
-						icon={<Trash2Icon />}
-						onClick={onOpen}
-						aria-label="カテゴリ削除"
 					/>
 				</HStack>
 				<CategoryAddDialog open={open} onClose={onClose} />
