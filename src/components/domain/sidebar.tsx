@@ -1,6 +1,6 @@
-import { Box, LinkBox } from "@yamada-ui/react";
 import { keyframes } from "@emotion/react";
-import { useEffect, useState, memo } from "react";
+import { Box, LinkBox } from "@yamada-ui/react";
+import { memo, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../router/routes";
 
@@ -46,16 +46,14 @@ export const SideBar = memo(() => {
 					animation={`${fadeIn} 0.1s ease-in-out`}
 				>
 					{routes.map((route) => (
-						<>
-							<LinkBox
-								key={route.name}
-								p={4}
-								onClick={() => navigate(route.path)}
-								_hover={{ bg: "gray.600" }} // ホバー時の背景色変更
-							>
-								{route.name}
-							</LinkBox>
-						</>
+						<LinkBox
+							key={route.name}
+							p={4}
+							onClick={() => navigate(route.path)}
+							_hover={{ bg: "gray.600" }} // ホバー時の背景色変更
+						>
+							{route.name}
+						</LinkBox>
 					))}
 				</Box>
 			)}

@@ -1,5 +1,5 @@
-import { ExpenditureHistory } from "./expenditure-history";
 import { supabase } from "../supabase";
+import { ExpenditureHistory } from "./expenditure-history";
 
 export const getExpenditureHistories = async (): Promise<
 	ExpenditureHistory[]
@@ -12,6 +12,7 @@ export const getExpenditureHistories = async (): Promise<
 					new ExpenditureHistory(
 						x.id,
 						x.name,
+						x.category_id,
 						x.amount,
 						x.is_variable_cost,
 						x.is_fixed_cost,

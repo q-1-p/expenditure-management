@@ -1,15 +1,13 @@
-import { Box, Heading } from "@yamada-ui/react";
-import { BaseTemplate } from "../template/base.template";
+import { Heading } from "@yamada-ui/react";
 import { BudgetBoard } from "../domain/budget/budget-board";
+import { BaseTemplate } from "../template/base.template";
 
 export const BudgetManagementPage = () => {
 	return (
 		<>
 			<BaseTemplate>
-				<Box p={12} w={"100%"}>
-					<Heading pb={4}>予算管理ページ</Heading>
-					<BudgetBoard />
-				</Box>
+				<Heading pb={4}>予算管理ページ</Heading>
+				<BudgetBoard />
 			</BaseTemplate>
 		</>
 	);

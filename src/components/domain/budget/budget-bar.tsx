@@ -1,23 +1,27 @@
-import { useMemo } from "react";
-import { Box, Spacer, HStack } from "@yamada-ui/react";
-import { DonutChart } from "@yamada-ui/charts";
 import type { CellProps } from "@yamada-ui/charts";
+import { DonutChart } from "@yamada-ui/charts";
+import { Box, HStack, Spacer } from "@yamada-ui/react";
+import { useMemo } from "react";
+import type { Category } from "../../../infrastructure/category/category";
 
-export const BudgetBar = () => {
+export const BudgetBar = (props: {
+	category: Category;
+	amountOfExpenditure: number;
+}) => {
 	const mewtwo: CellProps[] = useMemo(
 		() => [
 			{
-				name: "HP",
-				value: 106,
+				name: "支出金額",
+				value: props.category.budgetaryAmount - props.amountOfExpenditure,
 				color: "gray.900",
 			},
 			{
-				name: "こうげき",
-				value: 110,
+				name: "残予算",
+				value: props.amountOfExpenditure,
 				color: "white",
 			},
 		],
-		[],
+		[props.amountOfExpenditure, props.category.budgetaryAmount],
 	);
 
 	return (
@@ -30,8 +34,11 @@ export const BudgetBar = () => {
 				px={2}
 			>
 				<HStack>
-					<Box>カテゴリ名</Box>
-					<Box>￥100,000 / ¥10000000</Box>
+					<Box>{props.category.name}</Box>
+					<Box>
+						￥{props.amountOfExpenditure} / ¥
+						{props.category.budgetaryAmount || 0}
+					</Box>
 					<Spacer />
 					<Box>
 						<DonutChart
