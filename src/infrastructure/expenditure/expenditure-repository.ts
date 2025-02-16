@@ -36,7 +36,9 @@ export const addExpenditureHistory = async (
 		expended_at: expenditureHistory.expendedAt,
 	});
 	if (error) {
-		alert(`エラーが発生しました\n${error.message}`);
+		//alert(`エラーが発生しました\n${error.message}`);
+		console.error(expenditureHistory);
+		console.error(`エラーが発生しました\n${error.message}`);
 	}
 };
 

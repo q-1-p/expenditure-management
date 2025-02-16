@@ -8,7 +8,6 @@ export const BudgetListPanel = (props: {
 	categories: Category[];
 	expenditureHistories: ExpenditureHistory[];
 }) => {
-	alert(props.expenditureHistories.at(0)?.amount);
 	return (
 		<>
 			<SimpleGrid

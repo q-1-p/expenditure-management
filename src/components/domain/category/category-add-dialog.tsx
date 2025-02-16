@@ -75,7 +75,7 @@ export const CategoryAddDialog = ({
 							</Text>
 						)}
 					</FormControl>
-					<FormControl invalid={!!errors.name} mb={4}>
+					<FormControl invalid={!!errors.budgetaryAmount} mb={4}>
 						<HStack px={3}>
 							<Text w={"5rem"}>予算</Text>
 							<Input
@@ -88,9 +88,9 @@ export const CategoryAddDialog = ({
 								})}
 							/>
 						</HStack>
-						{errors.name && (
+						{errors.budgetaryAmount && (
 							<Text color="danger" fontSize="sm" pl={3} mt={1}>
-								{errors.name.message}
+								{errors.budgetaryAmount.message}
 							</Text>
 						)}
 					</FormControl>

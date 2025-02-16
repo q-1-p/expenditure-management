@@ -69,6 +69,9 @@ describe("カテゴリ管理ページのテスト", () => {
 			fireEvent.change(screen.getByTestId("nameEntryField"), {
 				target: { value: "テストカテゴリ" },
 			});
+			fireEvent.change(screen.getByTestId("budgetaryAmountEntryField"), {
+				target: { value: 10000 },
+			});
 		});
 
 		await act(async () => {
