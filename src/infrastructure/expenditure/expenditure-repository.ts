@@ -1,7 +1,7 @@
 import { supabase } from "../supabase";
 import { ExpenditureHistory } from "./expenditure-history";
 
-export const getExpenditureHistories = async (): Promise<
+export const fetchExpenditureHistories = async (): Promise<
 	ExpenditureHistory[]
 > => {
 	const { data } = await supabase.from("expenditure_histories").select("*");
@@ -25,14 +25,15 @@ export const getExpenditureHistories = async (): Promise<
 };
 
 export const addExpenditureHistory = async (
-	expenditure: ExpenditureHistory,
+	expenditureHistory: ExpenditureHistory,
 ) => {
 	const { error } = await supabase.from("expenditure_histories").insert({
-		name: expenditure.name,
-		amount: expenditure.amount,
-		is_variable_cost: expenditure.isPeriodic,
-		is_fixed_cost: expenditure.isFixedCost,
-		expended_at: expenditure.expendedAt,
+		name: expenditureHistory.name,
+		category_id: expenditureHistory.categoryId,
+		amount: expenditureHistory.amount,
+		is_variable_cost: expenditureHistory.isPeriodic,
+		is_fixed_cost: expenditureHistory.isFixedCost,
+		expended_at: expenditureHistory.expendedAt,
 	});
 	if (error) {
 		alert(`エラーが発生しました\n${error.message}`);

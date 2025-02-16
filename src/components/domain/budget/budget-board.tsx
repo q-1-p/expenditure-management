@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { Category } from "../../../infrastructure/category/category";
 import { fetchCategories } from "../../../infrastructure/category/category-repository";
 import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
-import { getExpenditureHistories as fetchExpenditureHistories } from "../../../infrastructure/expenditure/expenditure-repository";
+import { fetchExpenditureHistories } from "../../../infrastructure/expenditure/expenditure-repository";
 import { BudgetListPanel } from "./budget-list-panel";
 
 export const BudgetBoard = () => {

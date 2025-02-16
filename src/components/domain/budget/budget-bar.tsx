@@ -11,12 +11,12 @@ export const BudgetBar = (props: {
 	const mewtwo: CellProps[] = useMemo(
 		() => [
 			{
-				name: "支出金額",
+				name: "残予算",
 				value: props.category.budgetaryAmount - props.amountOfExpenditure,
 				color: "gray.900",
 			},
 			{
-				name: "残予算",
+				name: "支出金額",
 				value: props.amountOfExpenditure,
 				color: "white",
 			},
@@ -36,17 +36,12 @@ export const BudgetBar = (props: {
 				<HStack>
 					<Box>{props.category.name}</Box>
 					<Box>
-						￥{props.amountOfExpenditure} / ¥
+						¥{props.amountOfExpenditure} / ¥
 						{props.category.budgetaryAmount || 0}
 					</Box>
 					<Spacer />
 					<Box>
-						<DonutChart
-							data={mewtwo}
-							withTooltip={false}
-							h={"2rem"}
-							w={"2rem"}
-						/>
+						<DonutChart data={mewtwo} h={"2rem"} w={"2rem"} />
 					</Box>
 				</HStack>
 			</Box>

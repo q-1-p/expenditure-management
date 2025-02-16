@@ -8,6 +8,7 @@ export const BudgetListPanel = (props: {
 	categories: Category[];
 	expenditureHistories: ExpenditureHistory[];
 }) => {
+	alert(props.expenditureHistories.at(0)?.amount);
 	return (
 		<>
 			<SimpleGrid
@@ -35,9 +36,11 @@ export const BudgetListPanel = (props: {
 						<Spacer p={2} />
 						<BudgetBar
 							category={category}
-							amountOfExpenditure={props.expenditureHistories
-								.filter((x) => x.categoryId === category.id)
-								.reduce((sum, x) => sum + x.amount, 0)}
+							amountOfExpenditure={
+								props.expenditureHistories
+									.filter((x) => x.categoryId === category.id)
+									.at(0)?.amount ?? 0
+							}
 						/>
 					</Box>
 				))}

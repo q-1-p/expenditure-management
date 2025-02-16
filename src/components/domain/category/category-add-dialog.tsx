@@ -1,26 +1,26 @@
+import {
+	Button,
+	FormControl,
+	HStack,
+	Heading,
+	Input,
+	Modal,
+	ModalBody,
+	ModalFooter,
+	ModalHeader,
+	Radio,
+	RadioGroup,
+	Text,
+} from "@yamada-ui/react";
+import { useSetAtom } from "jotai";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import type { Category } from "../../../infrastructure/category/category";
 import {
 	addCategory,
 	fetchCategories,
 } from "../../../infrastructure/category/category-repository";
 import { categoriesAtom } from "../../atom";
-import { useSetAtom } from "jotai";
-import {
-	Modal,
-	ModalBody,
-	ModalFooter,
-	ModalHeader,
-	HStack,
-	Text,
-	Input,
-	RadioGroup,
-	Radio,
-	Button,
-	Heading,
-	FormControl,
-} from "@yamada-ui/react";
-import type { Category } from "../../../infrastructure/category/category";
 
 interface AddExpenditureModalProps {
 	open: boolean;
@@ -65,6 +65,25 @@ export const CategoryAddDialog = ({
 									required: {
 										value: true,
 										message: "名前を入力してください",
+									},
+								})}
+							/>
+						</HStack>
+						{errors.name && (
+							<Text color="danger" fontSize="sm" pl={3} mt={1}>
+								{errors.name.message}
+							</Text>
+						)}
+					</FormControl>
+					<FormControl invalid={!!errors.name} mb={4}>
+						<HStack px={3}>
+							<Text w={"5rem"}>予算</Text>
+							<Input
+								data-testid="budgetaryAmountEntryField"
+								{...register("budgetaryAmount", {
+									required: {
+										value: true,
+										message: "予算を入力してください",
 									},
 								})}
 							/>

@@ -1,19 +1,19 @@
-import { Box, IconButton } from "@yamada-ui/react";
 import { Trash2Icon } from "@yamada-ui/lucide";
+import { Box, IconButton } from "@yamada-ui/react";
+import { useSetAtom } from "jotai";
 import { memo } from "react";
+import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
 import {
-	getExpenditureHistories,
+	fetchExpenditureHistories,
 	removeExpenditureHistory,
 } from "../../../infrastructure/expenditure/expenditure-repository";
-import type { ExpenditureHistory } from "../../../infrastructure/expenditure/expenditure-history";
-import { useSetAtom } from "jotai";
 import { expenditureHistoriesAtom } from "../../atom";
 
 export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
 	const setExpenditureHistories = useSetAtom(expenditureHistoriesAtom);
 	const remove = async () => {
 		await removeExpenditureHistory(expenditureHistory.id);
-		const histories = await getExpenditureHistories();
+		const histories = await fetchExpenditureHistories();
 		setExpenditureHistories(histories);
 	};
 

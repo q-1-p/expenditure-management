@@ -12,18 +12,26 @@ export const fetchCategories = async (): Promise<Category[]> => {
 
 	const categories: Category[] = data
 		? data.map(
-				(x) => new Category(x.id, x.name, x.is_periodic, x.is_fixed_cost),
+				(x) =>
+					new Category(
+						x.id,
+						x.name,
+						x.is_periodic,
+						x.is_fixed_cost,
+						x.budgetary_amount,
+					),
 			)
 		: [];
 
 	return categories;
 };
 
-export const addCategory = async (expenditure: Category) => {
+export const addCategory = async (category: Category) => {
 	const { error } = await supabase.from("expenditure_categories").insert({
-		name: expenditure.name,
-		is_periodic: expenditure.isPeriodic,
-		is_fixed_cost: expenditure.isFixedCost,
+		name: category.name,
+		is_periodic: category.isPeriodic,
+		is_fixed_cost: category.isFixedCost,
+		budgetary_amount: category.budgetaryAmount,
 	});
 
 	if (error) {

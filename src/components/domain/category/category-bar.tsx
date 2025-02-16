@@ -30,6 +30,7 @@ export const CategoryBar = memo((category: Category) => {
 				<Box flex={7} pr={1}>
 					{category.name}
 				</Box>
+				<Box width={"10rem"}>予算：¥{category.budgetaryAmount}</Box>
 				<Box width={"4rem"}>{category.isPeriodic ? "定期" : "不定期"}</Box>
 				<Box width={"4rem"}>{category.isFixedCost ? "固定費" : "変動費"}</Box>
 				<IconButton

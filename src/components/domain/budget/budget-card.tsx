@@ -10,12 +10,12 @@ export const BudgetCard = (props: {
 	const mewtwo: CellProps[] = useMemo(
 		() => [
 			{
-				name: "支出金額",
+				name: "残予算",
 				value: props.budget - props.amountOfExpenditure,
 				color: "gray.900",
 			},
 			{
-				name: "残予算",
+				name: "支出金額",
 				value: props.amountOfExpenditure,
 				color: "white",
 			},
@@ -39,7 +39,8 @@ export const BudgetCard = (props: {
 						</Heading>
 						<Spacer />
 						<Box p={1}>
-							￥{props.amountOfExpenditure} / ￥{props.budget || 0}
+							支出金額：¥{props.amountOfExpenditure} / 予算：¥
+							{props.budget || 0}
 						</Box>
 					</Box>
 					<Spacer />
@@ -51,7 +52,6 @@ export const BudgetCard = (props: {
 								position: "center",
 								fontSize: "sm",
 							}}
-							withTooltip={false}
 							h={"4.5rem"}
 							w={"4.5rem"}
 						/>
