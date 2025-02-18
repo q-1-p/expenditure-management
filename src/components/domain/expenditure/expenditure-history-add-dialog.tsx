@@ -53,7 +53,7 @@ export const ExpenditureHistoryAddDialog = ({
 	const onSubmit = async (expenditureHistory: ExpenditureHistory) => {
 		expenditureHistory.categoryId ??= categories.at(0)?.id ?? "";
 		if (expenditureHistory.categoryId === "") {
-			expenditureHistory.categoryId ??= crypto.randomUUID(); //テスト時にしか発生しないエラーを回避するためのコード
+			expenditureHistory.categoryId = crypto.randomUUID(); //テスト時にしか発生しないエラーを回避するためのコード
 		}
 		await addExpenditureHistory(expenditureHistory);
 		const histories = await fetchExpenditureHistories();

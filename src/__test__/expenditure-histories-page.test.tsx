@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import { UIProvider } from "@yamada-ui/react";
 import { StrictMode } from "react";
 import { MemoryRouter } from "react-router-dom";
@@ -94,17 +94,17 @@ describe("支出履歴一覧ページのテスト", () => {
 		).resolves.toBeInTheDocument();
 	});
 
-	// test("支出削除ボタン押下時、支出が削除されることを確認する", async () => {
-	// 	// 削除ボタンをクリック
-	// 	const deleteButtons = await screen.findAllByTestId(
-	// 		"expenditureDeleteButton",
-	// 	);
-	// 	const deleteButton = deleteButtons[deleteButtons.length - 1];
-	// 	await act(async () => {
-	// 		deleteButton.click();
-	// 	});
+	test("支出削除ボタン押下時、支出が削除されることを確認する", async () => {
+		// 削除ボタンをクリック
+		const deleteButtons = await screen.findAllByTestId(
+			"expenditureDeleteButton",
+		);
+		const deleteButton = deleteButtons[deleteButtons.length - 1];
+		await act(async () => {
+			deleteButton.click();
+		});
 
-	// 	// 削除後の表示確認（非同期で待つ）
-	// 	await waitForElementToBeRemoved(() => screen.queryByText("テスト支出"));
-	// });
+		// 削除後の表示確認（非同期で待つ）
+		await waitForElementToBeRemoved(() => screen.queryByText("テスト支出"));
+	});
 });
