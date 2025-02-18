@@ -5,6 +5,7 @@ import { BudgetBar } from "./budget-bar";
 import { BudgetCard } from "./budget-card";
 
 export const BudgetListPanel = (props: {
+	title: string;
 	categories: Category[];
 	expenditureHistories: ExpenditureHistory[];
 }) => {
@@ -20,6 +21,7 @@ export const BudgetListPanel = (props: {
 			>
 				<Box>
 					<BudgetCard
+						title={props.title}
 						budget={props.categories.reduce(
 							(sum, x) => sum + x.budgetaryAmount,
 							0,

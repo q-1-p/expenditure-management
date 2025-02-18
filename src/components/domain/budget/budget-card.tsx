@@ -4,6 +4,7 @@ import { Box, Heading, Spacer, Stack } from "@yamada-ui/react";
 import { useMemo } from "react";
 
 export const BudgetCard = (props: {
+	title: string;
 	budget: number;
 	amountOfExpenditure: number;
 }) => {
@@ -35,7 +36,7 @@ export const BudgetCard = (props: {
 				<Stack direction={{ lg: "row" }}>
 					<Box>
 						<Heading as={"h2"} p={1} size={"md"}>
-							定期/固定費
+							{props.title}
 						</Heading>
 						<Spacer />
 						<Box p={1}>
