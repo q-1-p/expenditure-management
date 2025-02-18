@@ -10,7 +10,7 @@ export const routes = [
 		element: <ExpenditureListPage />,
 	},
 	{
-		name: "予算管理",
+		name: "支出状況確認",
 		path: "/budget",
 		exact: false,
 		element: <BudgetManagementPage />,

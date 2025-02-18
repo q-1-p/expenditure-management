@@ -6,7 +6,7 @@ export const BudgetManagementPage = () => {
 	return (
 		<>
 			<BaseTemplate>
-				<Heading pb={4}>予算管理ページ</Heading>
+				<Heading pb={4}>支出状況確認ページ</Heading>
 				<BudgetBoard />
 			</BaseTemplate>
 		</>
