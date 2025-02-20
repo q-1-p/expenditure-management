@@ -14,8 +14,6 @@ export const fetchExpenditureHistories = async (): Promise<
 						x.name,
 						x.category_id,
 						x.amount,
-						x.is_variable_cost,
-						x.is_fixed_cost,
 						new Date(x.expended_at),
 					),
 			)
@@ -31,8 +29,6 @@ export const addExpenditureHistory = async (
 		name: expenditureHistory.name,
 		category_id: expenditureHistory.categoryId,
 		amount: expenditureHistory.amount,
-		is_variable_cost: expenditureHistory.isPeriodic,
-		is_fixed_cost: expenditureHistory.isFixedCost,
 		expended_at: expenditureHistory.expendedAt,
 	});
 	if (error) {

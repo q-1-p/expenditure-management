@@ -31,12 +31,7 @@ export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
 					{expenditureHistory.name}
 				</Box>
 				<Box pr={5}>¥{expenditureHistory.amount}</Box>
-				<Box width={"4rem"}>
-					{expenditureHistory.isPeriodic ? "定期" : "不定期"}
-				</Box>
-				<Box width={"4rem"}>
-					{expenditureHistory.isFixedCost ? "固定費" : "変動費"}
-				</Box>
+				<Box width={"6rem"}>{expenditureHistory.categoryName}</Box>
 				<Box width={"6.5rem"}>
 					{`${expenditureHistory.expendedAt.getFullYear()}-${String(expenditureHistory.expendedAt.getMonth() + 1).padStart(2, "0")}-${String(expenditureHistory.expendedAt.getDate()).padStart(2, "0")}`}
 				</Box>

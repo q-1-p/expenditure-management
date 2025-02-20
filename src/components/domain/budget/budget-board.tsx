@@ -34,8 +34,11 @@ export const BudgetBoard = () => {
 					expenditureHistories={expenditureHistories.filter(
 						(x) =>
 							x.expendedAt.getMonth() === currentMonth &&
-							x.isPeriodic &&
-							x.isFixedCost,
+							x.expendedAt.getFullYear() === currentYear &&
+							categories
+								.filter((x) => x.isPeriodic && x.isFixedCost)
+								.map((x) => x.id)
+								.includes(x.categoryId),
 					)}
 				/>
 				<BudgetListPanel
@@ -44,8 +47,11 @@ export const BudgetBoard = () => {
 					expenditureHistories={expenditureHistories.filter(
 						(x) =>
 							x.expendedAt.getMonth() === currentMonth &&
-							x.isPeriodic &&
-							!x.isFixedCost,
+							x.expendedAt.getFullYear() === currentYear &&
+							categories
+								.filter((x) => x.isPeriodic && !x.isFixedCost)
+								.map((x) => x.id)
+								.includes(x.categoryId),
 					)}
 				/>
 				<BudgetListPanel
@@ -54,8 +60,10 @@ export const BudgetBoard = () => {
 					expenditureHistories={expenditureHistories.filter(
 						(x) =>
 							x.expendedAt.getFullYear() === currentYear &&
-							!x.isPeriodic &&
-							x.isFixedCost,
+							categories
+								.filter((x) => !x.isPeriodic && x.isFixedCost)
+								.map((x) => x.id)
+								.includes(x.categoryId),
 					)}
 				/>
 				<BudgetListPanel
@@ -64,8 +72,10 @@ export const BudgetBoard = () => {
 					expenditureHistories={expenditureHistories.filter(
 						(x) =>
 							x.expendedAt.getFullYear() === currentYear &&
-							!x.isPeriodic &&
-							!x.isFixedCost,
+							categories
+								.filter((x) => !x.isPeriodic && !x.isFixedCost)
+								.map((x) => x.id)
+								.includes(x.categoryId),
 					)}
 				/>
 			</Wrap>
