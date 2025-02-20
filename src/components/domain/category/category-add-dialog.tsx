@@ -101,10 +101,10 @@ export const CategoryAddDialog = ({
 					>
 						<HStack>
 							<Radio value="true" {...register("isFixedCost")}>
-								固定費
+								定期
 							</Radio>
 							<Radio value="false" {...register("isFixedCost")}>
-								非固定費
+								不定期
 							</Radio>
 						</HStack>
 					</RadioGroup>
@@ -115,10 +115,10 @@ export const CategoryAddDialog = ({
 					>
 						<HStack>
 							<Radio value="true" {...register("isPeriodic")}>
-								変動費
+								固定費
 							</Radio>
 							<Radio value="false" {...register("isPeriodic")}>
-								非変動費
+								変動費
 							</Radio>
 						</HStack>
 					</RadioGroup>
