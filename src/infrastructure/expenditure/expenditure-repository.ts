@@ -1,3 +1,4 @@
+import { fetchCategories } from "../category/category-repository";
 import { supabase } from "../supabase";
 import { ExpenditureHistory } from "./expenditure-history";
 
@@ -5,6 +6,7 @@ export const fetchExpenditureHistories = async (): Promise<
 	ExpenditureHistory[]
 > => {
 	const { data } = await supabase.from("expenditure_histories").select("*");
+	const categories = await fetchCategories();
 
 	const histories: ExpenditureHistory[] = data
 		? data.map(
@@ -13,6 +15,7 @@ export const fetchExpenditureHistories = async (): Promise<
 						x.id,
 						x.name,
 						x.category_id,
+						categories.find((y) => y.id === x.category_id)?.name ?? "",
 						x.amount,
 						new Date(x.expended_at),
 					),
