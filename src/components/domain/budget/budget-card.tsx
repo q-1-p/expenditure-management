@@ -49,7 +49,7 @@ export const BudgetCard = (props: {
 						<DonutChart
 							data={mewtwo}
 							labelProps={{
-								value: "100%",
+								value: `${Math.round(props.amountOfExpenditure / props.budget * 100)}%`,
 								position: "center",
 								fontSize: "sm",
 							}}

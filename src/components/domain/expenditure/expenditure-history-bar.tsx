@@ -37,7 +37,9 @@ export const ExpenditureBar = memo((expenditureHistory: ExpenditureHistory) => {
 				<Box width={"4rem"}>
 					{expenditureHistory.isFixedCost ? "固定費" : "変動費"}
 				</Box>
-				<Box width={"6.5rem"}>{expenditureHistory.expendedAt.toString()}</Box>
+				<Box width={"6.5rem"}>
+					{`${expenditureHistory.expendedAt.getFullYear()}-${String(expenditureHistory.expendedAt.getMonth() + 1).padStart(2, "0")}-${String(expenditureHistory.expendedAt.getDate()).padStart(2, "0")}`}
+				</Box>
 				<IconButton
 					as="button"
 					icon={<Trash2Icon />}

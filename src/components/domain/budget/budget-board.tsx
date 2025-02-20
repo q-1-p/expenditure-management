@@ -7,6 +7,8 @@ import { fetchExpenditureHistories } from "../../../infrastructure/expenditure/e
 import { BudgetListPanel } from "./budget-list-panel";
 
 export const BudgetBoard = () => {
+	const currentMonth = new Date().getMonth();
+	const currentYear = new Date().getFullYear();
 	const [categories, setCategories] = useState<Category[]>([]);
 	const [expenditureHistories, setExpenditureHistories] = useState<
 		ExpenditureHistory[]
@@ -30,28 +32,40 @@ export const BudgetBoard = () => {
 					title="定期/固定費"
 					categories={categories.filter((x) => x.isPeriodic && x.isFixedCost)}
 					expenditureHistories={expenditureHistories.filter(
-						(x) => x.isPeriodic && x.isFixedCost,
+						(x) =>
+							x.expendedAt.getMonth() === currentMonth &&
+							x.isPeriodic &&
+							x.isFixedCost,
 					)}
 				/>
 				<BudgetListPanel
 					title="定期/変動費"
 					categories={categories.filter((x) => x.isPeriodic && !x.isFixedCost)}
 					expenditureHistories={expenditureHistories.filter(
-						(x) => x.isPeriodic && !x.isFixedCost,
+						(x) =>
+							x.expendedAt.getMonth() === currentMonth &&
+							x.isPeriodic &&
+							!x.isFixedCost,
 					)}
 				/>
 				<BudgetListPanel
 					title="不定期/固定費"
-					categories={categories.filter((x) => !x.isPeriodic && !x.isFixedCost)}
+					categories={categories.filter((x) => !x.isPeriodic && x.isFixedCost)}
 					expenditureHistories={expenditureHistories.filter(
-						(x) => !x.isPeriodic && !x.isFixedCost,
+						(x) =>
+							x.expendedAt.getFullYear() === currentYear &&
+							!x.isPeriodic &&
+							x.isFixedCost,
 					)}
 				/>
 				<BudgetListPanel
 					title="不定期/変動費"
-					categories={categories.filter((x) => !x.isPeriodic && x.isFixedCost)}
+					categories={categories.filter((x) => !x.isPeriodic && !x.isFixedCost)}
 					expenditureHistories={expenditureHistories.filter(
-						(x) => !x.isPeriodic && x.isFixedCost,
+						(x) =>
+							x.expendedAt.getFullYear() === currentYear &&
+							!x.isPeriodic &&
+							!x.isFixedCost,
 					)}
 				/>
 			</Wrap>

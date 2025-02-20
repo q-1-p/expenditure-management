@@ -16,7 +16,7 @@ export const fetchExpenditureHistories = async (): Promise<
 						x.amount,
 						x.is_variable_cost,
 						x.is_fixed_cost,
-						x.expended_at,
+						new Date(x.expended_at),
 					),
 			)
 		: [];
