@@ -134,7 +134,7 @@ export const ExpenditureHistoryAddDialog = ({
 					<HStack px={3}>
 						<Text w={"6rem"}>日付</Text>
 						<Input
-							type="datetime-local"
+							type="date"
 							data-testid="dateEntryField"
 							{...register("expendedAt", {
 								required: {

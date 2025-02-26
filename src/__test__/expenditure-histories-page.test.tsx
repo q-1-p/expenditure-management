@@ -1,5 +1,11 @@
 import "@testing-library/jest-dom";
-import { act, fireEvent, render, screen, waitForElementToBeRemoved } from "@testing-library/react";
+import {
+	act,
+	fireEvent,
+	render,
+	screen,
+	waitForElementToBeRemoved,
+} from "@testing-library/react";
 import { UIProvider } from "@yamada-ui/react";
 import { StrictMode } from "react";
 import { MemoryRouter } from "react-router-dom";
@@ -79,7 +85,7 @@ describe("支出履歴一覧ページのテスト", () => {
 				target: { value: "1000" },
 			});
 			fireEvent.change(screen.getByTestId("dateEntryField"), {
-				target: { value: "2024-01-01T10:00" },
+				target: { value: "2025/01/01" },
 			});
 		});
 
@@ -88,10 +94,7 @@ describe("支出履歴一覧ページのテスト", () => {
 			submitButton.click();
 		});
 
-		// 登録後の表示確認（タイムアウトを延長）
-		await expect(
-			screen.findByText("テスト支出", {}, { timeout: 5000 }),
-		).resolves.toBeInTheDocument();
+		expect(await screen.findByText("テスト支出")).toBeInTheDocument();
 	});
 
 	test("支出削除ボタン押下時、支出が削除されることを確認する", async () => {
